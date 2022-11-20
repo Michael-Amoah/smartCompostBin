@@ -1,0 +1,569 @@
+[
+    {
+        "id": "644245e3b320f327",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "58430f06.f23e4",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "newline": "\\n",
+        "bin": "bin",
+        "out": "char",
+        "addchar": "false",
+        "responsetimeout": ""
+    },
+    {
+        "id": "63b04061fc8ea72a",
+        "type": "ui_group",
+        "name": "Temperature & Humidity",
+        "tab": "784aac14.5c2404",
+        "order": 1,
+        "disp": true,
+        "width": "25",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "784aac14.5c2404",
+        "type": "ui_tab",
+        "name": "Smart Compost Bin Dashboard",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "74605f2ec24865d4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#cc0000",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#cc0000",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#cc0000",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#ff1a1a",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#cc0000",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Smart Compost Bin",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "e4c02de9fcbe29c6",
+        "type": "ui_group",
+        "name": "History",
+        "tab": "784aac14.5c2404",
+        "order": 2,
+        "disp": true,
+        "width": "25",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "8eac05ae340033bc",
+        "type": "ui_group",
+        "name": "Water Level",
+        "tab": "784aac14.5c2404",
+        "order": 3,
+        "disp": true,
+        "width": "25",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "fbdd9f58702d4d41",
+        "type": "serial in",
+        "z": "644245e3b320f327",
+        "name": "",
+        "serial": "58430f06.f23e4",
+        "x": 137.5173568725586,
+        "y": 193.7500286102295,
+        "wires": [
+            [
+                "0edd38c44af53754",
+                "46bb3db1df79dfb7",
+                "a3459b16fd8be9b2",
+                "c30b870565811ccc"
+            ]
+        ]
+    },
+    {
+        "id": "0edd38c44af53754",
+        "type": "function",
+        "z": "644245e3b320f327",
+        "name": "Temp",
+        "func": "\nvar temp1= msg.payload[6]-48;\nvar temp2= msg.payload[7]-48;\nvar temp3= msg.payload[9]-48;\nvar temp4= msg.payload[10]-48;\n\nvar result = (temp1*1000)+ (temp2*100) + (temp3*10) + temp4; \nresult = result/100;\n\nvar result1 = {payload:result};\n\nreturn[result1];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 307.07645416259766,
+        "y": 92.56599521636963,
+        "wires": [
+            [
+                "6953177ac9103457",
+                "51c0ee4d99802149",
+                "d12555735e02ba0d"
+            ]
+        ]
+    },
+    {
+        "id": "6953177ac9103457",
+        "type": "debug",
+        "z": "644245e3b320f327",
+        "name": "temp",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 561.3498992919922,
+        "y": 37.79081916809082,
+        "wires": []
+    },
+    {
+        "id": "46bb3db1df79dfb7",
+        "type": "function",
+        "z": "644245e3b320f327",
+        "name": "Humidity",
+        "func": "\nvar hum1= msg.payload[0]-48;\nvar hum2= msg.payload[1]-48;\nvar hum3= msg.payload[3]-48;\nvar hum4= msg.payload[4]-48;\n\nif (msg.payload[4] == 44) {\n    var result = (hum1 * 100) + (hum2 * 10) + hum3;\n}\nelse {\nvar result = (hum1*1000)+ (hum2*100) + (hum3*10) + hum4; \n}\n\nresult = result/100;\n\nvar result1 = {payload:result};\n\nreturn[result1];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 315.0911521911621,
+        "y": 286.6883945465088,
+        "wires": [
+            [
+                "103d7620caee15aa",
+                "3b5da0a97305704e",
+                "ce2d2da24e541779"
+            ]
+        ]
+    },
+    {
+        "id": "103d7620caee15aa",
+        "type": "debug",
+        "z": "644245e3b320f327",
+        "name": "hum",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 562.6041069030762,
+        "y": 361.12417221069336,
+        "wires": []
+    },
+    {
+        "id": "51c0ee4d99802149",
+        "type": "ui_gauge",
+        "z": "644245e3b320f327",
+        "name": "Temp",
+        "group": "63b04061fc8ea72a",
+        "order": 1,
+        "width": "12",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 570.0998001098633,
+        "y": 99.71789360046387,
+        "wires": []
+    },
+    {
+        "id": "3b5da0a97305704e",
+        "type": "ui_gauge",
+        "z": "644245e3b320f327",
+        "name": "Humidity",
+        "group": "63b04061fc8ea72a",
+        "order": 2,
+        "width": "12",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 583.8411865234375,
+        "y": 288.4635429382324,
+        "wires": []
+    },
+    {
+        "id": "d12555735e02ba0d",
+        "type": "ui_chart",
+        "z": "644245e3b320f327",
+        "name": "Temperature Last Hour",
+        "group": "e4c02de9fcbe29c6",
+        "order": 1,
+        "width": "12",
+        "height": "5",
+        "label": "Temperature Last Hour",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 620,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce2d2da24e541779",
+        "type": "ui_chart",
+        "z": "644245e3b320f327",
+        "name": "Humidity Last Hour",
+        "group": "e4c02de9fcbe29c6",
+        "order": 2,
+        "width": "12",
+        "height": "5",
+        "label": "Humidity Last Hour",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3459b16fd8be9b2",
+        "type": "function",
+        "z": "644245e3b320f327",
+        "name": "water",
+        "func": "var water1 = msg.payload[12] - 48;\nvar water2 = msg.payload[13] - 48;\nvar water3 = msg.payload[14] - 48;\n\nif (msg.payload[13] == 13) {\n    var result = (water1*100);\n}\n\nelse if (msg.payload[14] == 13) {\n    var result = ((water1 * 1000) + (water2 * 100));\n}\nelse {\nvar result = ((water1 * 10000) + (water2 * 1000) + (water3*100));\n}\n\nresult = result / 100;\n\nvar result1 = { payload: result };\n\nreturn [result1];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "e935fb2a2f257f26",
+                "53ebf992f38afdea",
+                "9ad6d3416d00046c"
+            ]
+        ]
+    },
+    {
+        "id": "e935fb2a2f257f26",
+        "type": "ui_chart",
+        "z": "644245e3b320f327",
+        "name": "",
+        "group": "8eac05ae340033bc",
+        "order": 1,
+        "width": "17",
+        "height": "7",
+        "label": "Current Water Level",
+        "chartType": "bar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "None",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "800",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 520,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53ebf992f38afdea",
+        "type": "debug",
+        "z": "644245e3b320f327",
+        "name": "water",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "026eb071b551fef4",
+        "type": "file",
+        "z": "644245e3b320f327",
+        "name": "",
+        "filename": "/home/pi/Downloads/logs.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 640,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c30b870565811ccc",
+        "type": "function",
+        "z": "644245e3b320f327",
+        "name": "add date",
+        "func": "var d = new Date();\nvar date = (d.getMonth() + 1) + \"/\" + d.getDate() + \"/\"  + d.getFullYear() + \" \"+d.getHours()+\":\"+d.getMinutes()+\":\"+d.getSeconds();\nvar data = date + \",\" + msg.payload;\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "026eb071b551fef4"
+            ]
+        ]
+    },
+    {
+        "id": "6269755730acc046",
+        "type": "ui_text",
+        "z": "644245e3b320f327",
+        "group": "8eac05ae340033bc",
+        "order": 2,
+        "width": "8",
+        "height": "1",
+        "name": "",
+        "label": "<font size = 4>Water Level Staus",
+        "format": "<font size = 4>{{msg.str}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9ad6d3416d00046c",
+        "type": "function",
+        "z": "644245e3b320f327",
+        "name": "printWaterLevel",
+        "func": "var str = msg.payload;\n\nif (str < 530) {\n    msg.str = \"Low-Level\";\n}\nelse if (str < 650) {\n    msg.str = \"Mid-Level\";\n}\nelse {\n    msg.str = \"High-Level: Drain water out\";\n}\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "6269755730acc046",
+                "4bd19b349dd664a5"
+            ]
+        ]
+    },
+    {
+        "id": "4bd19b349dd664a5",
+        "type": "debug",
+        "z": "644245e3b320f327",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 680,
+        "wires": []
+    }
+]
